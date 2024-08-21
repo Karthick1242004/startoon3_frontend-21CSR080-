@@ -14,6 +14,15 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error('Invalid email format!');
+      return;
+    }
+    if (password.length <= 3) {
+      toast.error('Password must be more than 3 characters!');
+      return;
+    }
 
     const user = { name, email, password };
 
@@ -30,10 +39,10 @@ function Signup() {
         toast.success('Signup successful!');
         setTimeout(() => {
           navigate('/User');
-        }, 2000); // Redirect after 2 seconds
+        }, 1500); 
       } else {
         const data = await response.json();
-        toast.error(data.error);
+        toast.error(data.error || 'Signup failed!');
       }
     } catch (error) {
       toast.error('Error during signup.');
@@ -72,7 +81,7 @@ function Signup() {
             <input
               className={So.inp}
               type='password'
-              placeholder='password'
+              placeholder='Password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
