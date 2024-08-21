@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Lo from './Login.module.css';
+import Image from '../../assets/DrawKit Larry Character Illustration (4).png';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function Login() {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = { name, password };
+
+    try {
+      const response = await fetch('http://localhost:3300/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success('Login successful!');
+        setTimeout(() => {
+          navigate(data.redirectTo);  // Redirect based on the response
+        }, 2000); // Redirect after 2 seconds
+      } else {
+        toast.error(data.error || 'Login failed!');
+      }
+    } catch (error) {
+      toast.error('Error during login.');
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <>
+      <div className={Lo.main}>
+        <img className={Lo.img} src={Image} alt="img" />
+        <div className={Lo.form}>
+          <h1 className={Lo.head}>Login Here</h1>
+          <div className={Lo.form1}>
+            <label className={Lo.lable}>Name : </label>
+            <input
+              className={Lo.inp}
+              type='text'
+              placeholder='Name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className={Lo.form1}>
+            <label className={Lo.lable}>Password : </label>
+            <input
+              className={Lo.inp}
+              type='password'
+              placeholder='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <p className={Lo.acc}>Don't have an account? <Link to='/Signup'> Signup</Link></p>
+          <button className={Lo.btn} onClick={handleSubmit}>Submit</button>
+        </div>
+      </div>
+      <ToastContainer />
+    </>
+  );
+}
+
+export default Login;
