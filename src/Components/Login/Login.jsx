@@ -17,7 +17,7 @@ function Login() {
     const user = { name, password };
 
     try {
-      const response = await fetch('http://localhost:3300/login', {
+      const response = await fetch('https://startoon3-backend-21csr080.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -68,7 +68,14 @@ function Login() {
           </div>
           <p className={Lo.acc}>Don't have an account? <Link to='/Signup'> Signup</Link></p>
           <button className={Lo.btn} onClick={handleSubmit}>Submit</button>
+          <div className={Lo.pp}>
+          <p>Demo Admin Name : kamalesh</p>
+        <p>Demo Admin Password : kamalesh</p>
+        <p>Demo User Name : karthick</p>
+        <p>Demo User Password : karthick</p>
         </div>
+        </div>
+        
       </div>
       <ToastContainer />
     </>

@@ -9,7 +9,7 @@ function Admin() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:3300/admin/users');
+        const response = await fetch('https://startoon3-backend-21csr080.onrender.com/admin/users');
         const data = await response.json();
         setUsers(data);
       } catch (error) {

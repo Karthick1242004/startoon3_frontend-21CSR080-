@@ -11,7 +11,7 @@ function Graph() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3300/graph/monthly-counts');
+        const response = await fetch('https://startoon3-backend-21csr080.onrender.com/graph/monthly-counts');
         const result = await response.json();
         const labels = result.map(item => item.month);
         const values = result.map(item => item.count);

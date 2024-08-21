@@ -18,7 +18,7 @@ function Signup() {
     const user = { name, email, password };
 
     try {
-      const response = await fetch('http://localhost:3300/signup', {
+      const response = await fetch('https://startoon3-backend-21csr080.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
