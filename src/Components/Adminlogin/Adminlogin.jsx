@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Ad from './Adminlogin.module.css'; 
 import Image from '../../assets/DrawKit Larry Character Illustration (4).png';
+import Nav from '../Navbar/Nav';
 
 function Adminlogin() {
   const [name, setName] = useState(''); 
@@ -35,6 +36,7 @@ function Adminlogin() {
 
   return (
     <>
+    <Nav/>
       <div className={Ad.main}>
         <img className={Ad.img} src={Image} alt="img" />
         <div className={Ad.form}>

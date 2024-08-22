@@ -5,6 +5,7 @@ import Image from '../../assets/DrawKit Larry Character Illustration (4).png';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Nav from '../Navbar/Nav';
 
 function Login() {
   const [name, setName] = useState('');
@@ -47,6 +48,7 @@ function Login() {
 
   return (
     <>
+    <Nav/>
       <div className={Lo.main}>
         <img className={Lo.img} src={Image} alt="img" />
         <div className={Lo.form}>

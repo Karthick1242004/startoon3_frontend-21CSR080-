@@ -7,14 +7,14 @@ import User from './Components/User/User';
 import Admin from './Components/Admin/Admin'
 import Graph from './Components/Graph/Graph'
 import Adminlogin from './Components/Adminlogin/Adminlogin';
-import Nav from './Components/Navbar/Nav';
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Nav/>
+    
       <Routes>
         <Route exact path='/' element={<Login/>} />
         <Route path='/Login' element={<Login/>} />
