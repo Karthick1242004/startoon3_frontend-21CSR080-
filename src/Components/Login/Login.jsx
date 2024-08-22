@@ -35,8 +35,8 @@ function Login() {
       if (response.ok) {
         toast.success('Login successful!');
         setTimeout(() => {
-          navigate(data.redirectTo);  // Redirect based on the response
-        }, 1500); // Redirect after 2 seconds
+          navigate(data.redirectTo);  
+        }, 1500); 
       } else {
         toast.error(data.error || 'Login failed!');
       }

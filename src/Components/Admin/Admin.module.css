@@ -26,7 +26,7 @@
 
 .table-container {
   width: 100%;
-  overflow-x: auto; /* Enable horizontal scroll on smaller screens */
+  overflow-x: auto; 
   border-radius: 8px;
 }
 
@@ -89,10 +89,10 @@
   }
 
   .tableContainer {
-      overflow-x: auto; /* Ensure the table is scrollable horizontally */
+      overflow-x: auto; 
   }
 
   .table {
-      min-width: 200px; /* Set a minimum width to maintain table structure */
+      min-width: 200px; 
   }
 }
