@@ -13,6 +13,8 @@
 .img{
     width: 50%;
     margin-left: -15%;
+    animation: float infinite 3s ease-in-out;
+    margin-top: -4%;
 }
 .form{
     display: flex;
@@ -25,6 +27,7 @@
     padding-top: 1%;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: -5%;
 }
 .form1{
     display: flex;
@@ -85,5 +88,21 @@
     }
     .img{
         width: 60%;
+        margin-top: -15%;
     }
+    .form{
+        margin-top: 5%;
+    }
+}
+@keyframes float {
+    0%{
+        transform: translateY(-15px);
+    }
+    50%{
+        transform: translateY(15px);
+    }
+    100%{
+        transform: translateY(-15px);
+    }
+    
 }
