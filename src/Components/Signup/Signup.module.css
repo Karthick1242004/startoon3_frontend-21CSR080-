@@ -60,3 +60,21 @@
     margin-top: -2%;
     text-align: center;
 }
+@media screen and (max-width:750px){
+    .main{
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .form{
+        width: 60%;
+    }
+    .inp{
+        width: 95%;
+    }
+    .btn{
+        width: 100%;
+    }
+    .img{
+        width: 60%;
+    }
+}

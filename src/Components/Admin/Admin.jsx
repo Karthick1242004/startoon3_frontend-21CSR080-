@@ -5,15 +5,22 @@ import { Link } from 'react-router-dom';
 function Admin() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await fetch('https://startoon3-backend-21csr080.onrender.com/admin/users');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         setUsers(data);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -27,6 +34,14 @@ function Admin() {
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) {
+    return <div className={Ao.container}>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className={Ao.container}>Error: {error}</div>;
+  }
 
   return (
     <div className={Ao.container}>
@@ -44,28 +59,36 @@ function Admin() {
           className={Ao.searchInput}
         />
       </div>
-      <table className={Ao.table}>
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Login Count</th>
-            <th>Last Login</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map((user, index) => (
-            <tr key={user._id}>
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.loginCount}</td>
-              <td>{new Date(user.lastLogin).toLocaleString()}</td>
+      <div className={Ao.tableContainer}>
+        <table className={Ao.table}>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Login Count</th>
+              <th>Last Login</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((user, index) => (
+                <tr key={user._id}>
+                  <td>{index + 1}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.loginCount}</td>
+                  <td>{new Date(user.lastLogin).toLocaleString()}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: 'center' }}>No users found</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

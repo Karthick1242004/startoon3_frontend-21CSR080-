@@ -74,8 +74,6 @@ function Login() {
           <p className={Lo.acc}>Don't have an account? <Link to='/Signup'> Signup</Link></p>
           <button className={Lo.btn} onClick={handleSubmit}>Submit</button>
           <div className={Lo.pp}>
-            <p>Demo Admin Name : kamalesh</p>
-            <p>Demo Admin Password : kamalesh</p>
             <p>Demo User Name : karthick</p>
             <p>Demo User Password : karthick</p>
           </div>
