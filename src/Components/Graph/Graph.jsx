@@ -7,6 +7,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 function Graph() {
   const [data, setData] = useState({ labels: [], values: [] });
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,8 @@ function Graph() {
         const labels = result.map(item => item.month);
         const values = result.map(item => item.count);
         setData({ labels, values });
+        const cumulativeCount = result.reduce((total, item) => total + item.count, 0);
+        setTotalCount(cumulativeCount);
       } catch (error) {
         console.error('Error fetching graph data:', error);
       }
@@ -67,10 +70,15 @@ function Graph() {
   };
 
   return (
-    <div className={Go.container}>
-      <h1 className={Go.title}>Monthly Counts</h1>
-      <div className={Go.graph}>
-        <Bar data={chartData} options={options} />
+    <div>
+      <div className={Go.container}>
+        <h1 className={Go.title}>Monthly Counts</h1>
+        <div className={Go.graph}>
+          <Bar data={chartData} options={options} />
+        </div>
+      </div>
+      <div className={Go.count}>
+        <p>Total logins this year<br/> <span>'{totalCount}'</span></p> 
       </div>
     </div>
   );

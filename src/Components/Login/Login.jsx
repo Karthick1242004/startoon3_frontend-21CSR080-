@@ -14,30 +14,35 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    if (name.trim() === '') {
+      toast.error('Name is required!');
+      return;
+    }
+  
     if (password.length <= 3) {
       toast.error('Password must be more than 3 characters!');
       return;
     }
-
+  
     const user = { name, password };
-
+  
     try {
-      const response = await fetch('https://startoon3-backend-21csr080.onrender.com/login', {
+      const response = await fetch('https://startoon3-backend-21csr080.onrender.com/login', { // Assuming a login endpoint exists
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(user)
       });
-
-      const data = await response.json();
+  
       if (response.ok) {
         toast.success('Login successful!');
         setTimeout(() => {
-          navigate(data.redirectTo);  
+          navigate('/User', { state: { name: user.name } }); 
         }, 1500); 
       } else {
+        const data = await response.json();
         toast.error(data.error || 'Login failed!');
       }
     } catch (error) {
@@ -45,6 +50,8 @@ function Login() {
       console.error('Error:', error);
     }
   };
+  
+  
 
   return (
     <>

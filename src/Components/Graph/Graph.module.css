@@ -1,6 +1,6 @@
 .container {
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #F5F3E3;
     border-radius: 8px;
     height: 100vh;
   }
@@ -9,10 +9,30 @@
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
   }
   
   .graph {
     max-width: 800px;
     margin: 0 auto;
   }
-  
+  .count{
+    margin-top: -20%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+  }
+  .count p{
+    background-color: white;
+    padding: 3%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    font-weight: 600;
+    
+  }
+  span{
+    font-size: 50px;
+    font-family: "Anton", sans-serif;
+  font-weight: 400;
+  }

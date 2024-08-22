@@ -39,7 +39,7 @@ function Signup() {
       if (response.ok) {
         toast.success('Signup successful!');
         setTimeout(() => {
-          navigate('/User');
+          navigate('/User', { state: { name } }); // Passing name to User page
         }, 1500); 
       } else {
         const data = await response.json();
@@ -53,7 +53,7 @@ function Signup() {
 
   return (
     <>
-    <Nav/>
+      <Nav />
       <div className={So.main}>
         <img className={So.img} src={Image} alt="img" />
         <div className={So.form}>
