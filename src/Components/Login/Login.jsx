@@ -28,7 +28,7 @@ function Login() {
     const user = { name, password };
   
     try {
-      const response = await fetch('https://startoon3-backend-21csr080.onrender.com/login', { // Assuming a login endpoint exists
+      const response = await fetch('https://startoon3-backend-21csr080.onrender.com/login', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

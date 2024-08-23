@@ -66,6 +66,7 @@ function Admin() {
               <th>S.No</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Gender</th>
               <th>Login Count</th>
               <th>Last Login</th>
             </tr>
@@ -77,13 +78,14 @@ function Admin() {
                   <td>{index + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
+                  <td>{user.gender}</td>
                   <td>{user.loginCount}</td>
-                  <td>{new Date(user.lastLogin).toLocaleString()}</td>
+                  <td>{user.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Never'}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5" style={{ textAlign: 'center' }}>No users found</td>
+                <td colSpan="6" style={{ textAlign: 'center' }}>No users found</td>
               </tr>
             )}
           </tbody>

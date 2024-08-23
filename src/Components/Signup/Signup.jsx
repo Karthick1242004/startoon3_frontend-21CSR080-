@@ -11,6 +11,7 @@ function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [gender, setGender] = useState('Male'); 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,7 +26,7 @@ function Signup() {
       return;
     }
 
-    const user = { name, email, password };
+    const user = { name, email, password, gender }; 
 
     try {
       const response = await fetch('https://startoon3-backend-21csr080.onrender.com/signup', {
@@ -39,7 +40,7 @@ function Signup() {
       if (response.ok) {
         toast.success('Signup successful!');
         setTimeout(() => {
-          navigate('/User', { state: { name } }); // Passing name to User page
+          navigate('/User', { state: { name } });
         }, 1500); 
       } else {
         const data = await response.json();
@@ -87,6 +88,18 @@ function Signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+          </div>
+          <div className={So.form1}>
+            <label className={So.lable}>Gender : </label>
+            <select
+              className={So.inp2}
+              value={gender} 
+              onChange={(e) => setGender(e.target.value)} 
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Choose not to disclose">Choose not to disclose</option>
+            </select>
           </div>
           <p className={So.acc}>Already have an account? <Link to='/Login'> Login</Link></p>
           <button className={So.btn} onClick={handleSubmit}>Submit</button>
